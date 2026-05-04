@@ -309,7 +309,7 @@ async def cmd_credits(message: types.Message):
     )
 
 # ================== OWNER: APPROVE/DENY ==================
-@dp.callback_query(lambda c: c.data.startswith("access:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("access:"))
 async def cb_approval(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("You are not the owner.", show_alert=True)
