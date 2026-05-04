@@ -11,8 +11,8 @@ load_dotenv()
 
 import main as fb
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-OWNER_ID  = int(os.getenv("OWNER_ID", "0"))
+BOT_TOKEN = os.getenv("8693883896:AAGrZolWFHpwOSuJ0bIzWn9aaWCDrcjTAJE")
+OWNER_ID  = int(os.getenv("8650814015")
 
 bot = Bot(token=BOT_TOKEN)
 dp  = Dispatcher()
