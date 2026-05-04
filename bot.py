@@ -209,7 +209,7 @@ async def _del(chat_id, msg_id, delay=0):
         pass
 
 # ================== /start ==================
-@dp.message(Command("start"))
+@dp.message_handler(commands=['start'])
 async def cmd_start(message: types.Message):
     uid        = message.from_user.id
     first_name = message.from_user.first_name or "there"
