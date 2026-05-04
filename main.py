@@ -1434,12 +1434,12 @@ cp = 0
 _live_lock = threading.Lock()
 
 DOMAIN_PASSWORDS = {
-    "1":  "",
-    "2":  "jemm123",
-    "3":  "yop123",
-    "4":  "yuennix",
-    "5":  "astheia123",
-    "6":  "yuennix",
+    "1":  "000",
+    "2":  "000",
+    "3":  "000",
+    "4":  "000",
+    "5":  "000",
+    "6":  "000",
     "7":  "astheia123",
     "8":  "shaishai@22",
     "9":  "yuennix",
@@ -1549,7 +1549,7 @@ def logo():
 def fake_password(custom=None):
     if custom:
         return str(custom)
-    words  = ["Weyn","Norms","Alpha","Beta","Luna","Nova","Storm","Blaze","Frost","Drift"]
+    words  = ["Lcx","Norms","Alpha","Beta","Luna","Nova","Storm","Blaze","Frost","Drift"]
     digits = str(random.randint(100, 9999))
     syms   = random.choice(["@","#","!","$"])
     return random.choice(words) + digits + syms
@@ -1651,7 +1651,7 @@ def get_temp_email(fname, lname, domain_choice=None):
     elif domain_choice == "2":
         domain = "jemm.site"
     elif domain_choice == "3":
-        domain = "yopmail.com"
+        domain = "harakirimail.com"
     elif domain_choice == "4":
         domain = "weyn.store"
     elif domain_choice == "5":
@@ -1671,7 +1671,7 @@ def get_temp_email(fname, lname, domain_choice=None):
     elif domain_choice == "12":
         domain = "rimuru.store"
     else:
-        domain = "weyn.store"
+        domain = "harakirimail.com"
     return f"{prefix}@{domain}"
 def _fetch_yopmail_code(login):
     sess = requests.Session()
@@ -1680,14 +1680,14 @@ def _fetch_yopmail_code(login):
         "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
         "accept": "text/html,*/*;q=0.9",
         "accept-language": "en-US,en;q=0.9",
-        "referer": "https://yopmail.com/",
+        "referer": "https://harakirimail.com/",
     }
     for attempt in range(25):
         if attempt > 0:
             time.sleep(0.5)
         try:
             r = sess.get(
-                f"https://yopmail.com/mail.php?b={login}&to=inbox",
+                f"https://harakirimail.com/mail.php?b={login}&to=inbox",
                 headers=headers, timeout=12
             )
             if r.status_code != 200:
@@ -1706,7 +1706,7 @@ def _fetch_yopmail_code(login):
                         return code.group(1)
                 try:
                     mr = sess.get(
-                        f"https://yopmail.com/mail.php?b={login}&id={mid}&to=mail",
+                        f"https://harakirimail.com/mail.php?b={login}&id={mid}&to=mail",
                         headers=headers, timeout=12
                     )
                     body = BeautifulSoup(mr.text, 'html.parser').get_text()
@@ -1723,8 +1723,8 @@ def get_temp_code(email):
     domain = email.split('@')[1].lower() if '@' in email else ''
     if email in _1secmail_inboxes:
         return _fetch_1secmail_code(email)
-    if domain == 'yopmail.com':
-        return _fetch_yopmail_code(login)
+    if domain == 'harakirimail.com': 
+        return _fetch_harakirimail_code(login)
     sess = requests.Session()
     headers = {
         "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
