@@ -429,8 +429,8 @@ async def cmd_menu(message: types.Message):
         reply_markup=make_admin_menu_kb()
     )
 
-# ================== OWNER MENU ==================
-@dp.callback_query(lambda c: c.data == "menu:admin")
+# ================== OWNER MENU =================
+@dp.callback_query_handler(lambda c: c.data == "menu:admin")
 async def cb_admin_menu(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
@@ -442,7 +442,7 @@ async def cb_admin_menu(callback: types.CallbackQuery):
     )
     await callback.answer()
 
-@dp.callback_query(lambda c: c.data == "menu:back")
+@dp.callback_query_handler(lambda c: c.data == "menu:back")
 async def cb_menu_back(callback: types.CallbackQuery):
     uid = callback.from_user.id
     await callback.message.edit_text(
@@ -453,7 +453,7 @@ async def cb_menu_back(callback: types.CallbackQuery):
     await callback.answer()
 
 # ── Approved Users panel ──
-@dp.callback_query(lambda c: c.data == "menu:users")
+@dp.callback_query_handler(lambda c: c.data == "menu:users")
 async def cb_menu_users(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
@@ -463,7 +463,7 @@ async def cb_menu_users(callback: types.CallbackQuery):
     await callback.message.edit_text(header, parse_mode="Markdown", reply_markup=make_users_kb())
     await callback.answer()
 
-@dp.callback_query(lambda c: c.data.startswith("revoke:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("revoke:"))
 async def cb_revoke(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
@@ -482,7 +482,7 @@ async def cb_revoke(callback: types.CallbackQuery):
     await callback.answer(f"🚫 Revoked access for {target}", show_alert=True)
 
 # ── Created Accounts panel (owner sees all) ──
-@dp.callback_query(lambda c: c.data == "menu:accounts")
+@dp.callback_query_handler(lambda c: c.data == "menu:accounts")
 async def cb_menu_accounts(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
@@ -505,7 +505,7 @@ async def cb_menu_accounts(callback: types.CallbackQuery):
     await callback.message.edit_text(text, parse_mode="Markdown", reply_markup=make_accounts_kb())
     await callback.answer()
 
-@dp.callback_query(lambda c: c.data == "accounts:clear")
+@dp.callback_query_handler(lambda c: c.data == "accounts:clear")
 async def cb_accounts_clear(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
@@ -521,7 +521,7 @@ async def cb_accounts_clear(callback: types.CallbackQuery):
     await callback.answer("✅ Cleared!", show_alert=True)
 
 # ── My Accounts panel (regular user sees only their own) ──
-@dp.callback_query(lambda c: c.data == "menu:myaccs")
+@dp.callback_query_handler(lambda c: c.data == "menu:myaccs")
 async def cb_my_accounts(callback: types.CallbackQuery):
     uid  = callback.from_user.id
     if not is_allowed(uid):
@@ -550,7 +550,7 @@ async def cb_my_accounts(callback: types.CallbackQuery):
     await callback.answer()
 
 # ── Bot Accounts panel (own accounts for users, all accounts for owner) ──
-@dp.callback_query(lambda c: c.data == "menu:botaccs")
+@dp.callback_query_handler(lambda c: c.data == "menu:botaccs")
 async def cb_bot_accounts(callback: types.CallbackQuery):
     uid = callback.from_user.id
     if not is_allowed(uid):
@@ -582,7 +582,7 @@ async def cb_bot_accounts(callback: types.CallbackQuery):
     await callback.answer()
 
 # ── /myaccs command ──
-@dp.message(Command("myaccs"))
+@dp.message_handler(commands=['myaccs'])
 async def cmd_myaccs(message: types.Message):
     uid = message.from_user.id
     if not is_allowed(uid):
@@ -610,7 +610,7 @@ async def cmd_myaccs(message: types.Message):
     await message.answer(text, parse_mode="Markdown", reply_markup=back_kb)
 
 # ── /botaccs command ──
-@dp.message(Command("botaccs"))
+@dp.message_handler(commands=['botaccs'])
 async def cmd_botaccs(message: types.Message):
     uid = message.from_user.id
     if not is_allowed(uid):
@@ -641,7 +641,7 @@ async def cmd_botaccs(message: types.Message):
     await message.answer(text, parse_mode="Markdown", reply_markup=back_kb)
 
 # ── My Credits panel ──
-@dp.callback_query(lambda c: c.data == "menu:mycredits")
+@dp.callback_query_handler(lambda c: c.data == "menu:mycredits")
 async def cb_my_credits(callback: types.CallbackQuery):
     uid = callback.from_user.id
     if not is_allowed(uid):
@@ -660,12 +660,12 @@ async def cb_my_credits(callback: types.CallbackQuery):
     )
     await callback.answer()
 
-@dp.callback_query(lambda c: c.data == "noop")
+@dp.callback_query_handler(lambda c: c.data == "noop")
 async def cb_noop(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== START CREATE ==================
-@dp.callback_query(lambda c: c.data == "menu:create")
+@dp.callback_query_handler(lambda c: c.data == "menu:create")
 async def cb_name_style(callback: types.CallbackQuery):
     if not is_allowed(callback.from_user.id):
         await callback.answer("⛔ You don't have access. Use /start to request.", show_alert=True)
@@ -676,7 +676,7 @@ async def cb_name_style(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== NAME ==================
-@dp.callback_query(lambda c: c.data.startswith("name:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("name:"))
 async def cb_gender(callback: types.CallbackQuery):
     uid = callback.from_user.id
     user_data[uid] = {"name": callback.data.split(":")[1]}
@@ -686,7 +686,7 @@ async def cb_gender(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== GENDER ==================
-@dp.callback_query(lambda c: c.data.startswith("gender:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("gender:"))
 async def cb_domain(callback: types.CallbackQuery):
     uid = callback.from_user.id
     if uid not in user_data:
@@ -699,7 +699,7 @@ async def cb_domain(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== DOMAIN → ASK PASSWORD ==================
-@dp.callback_query(lambda c: c.data.startswith("domain:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("domain:"))
 async def cb_domain_pass(callback: types.CallbackQuery):
     uid = callback.from_user.id
     if uid not in user_data:
@@ -729,7 +729,7 @@ async def cb_domain_pass(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== ACCOUNT PASSWORD CHOICE ==================
-@dp.callback_query(lambda c: c.data.startswith("accpass:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("accpass:"))
 async def cb_acc_pass(callback: types.CallbackQuery):
     uid = callback.from_user.id
     if uid not in user_data:
@@ -755,7 +755,7 @@ async def cb_acc_pass(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== STOP BUTTON ==================
-@dp.callback_query(lambda c: c.data.startswith("stop:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("stop:"))
 async def cb_stop(callback: types.CallbackQuery):
     uid = int(callback.data.split(":")[1])
     if callback.from_user.id != uid and callback.from_user.id != OWNER_ID:
