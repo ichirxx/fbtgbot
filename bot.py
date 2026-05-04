@@ -1056,7 +1056,8 @@ async def main():
         scope=types.BotCommandScopeChat(chat_id=OWNER_ID)
     )
 
-    await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
+    await dp.start_polling()
+    
 
 if __name__ == "__main__":
     asyncio.run(main())
