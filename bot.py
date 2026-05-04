@@ -419,7 +419,7 @@ async def cb_add_credits(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== /menu COMMAND ==================
-@dp.message(Command("menu"))
+@dp.message_handler(commands=['menu'])
 async def cmd_menu(message: types.Message):
     if message.from_user.id != OWNER_ID:
         return
