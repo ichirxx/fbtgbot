@@ -1647,31 +1647,15 @@ def get_temp_email(fname, lname, domain_choice=None):
         result = _create_1secmail_email(fname, lname)
         if result:
             return result
-        domain = "weyn.store"
+        domain = "lcxmail.site"
     elif domain_choice == "2":
-        domain = "jemm.site"
-    elif domain_choice == "3":
         domain = "yopmail.com"
+    elif domain_choice == "3":
+        domain = "harakirimail.com"
     elif domain_choice == "4":
-        domain = "weyn.store"
-    elif domain_choice == "5":
-        domain = "astheia.shop"
-    elif domain_choice == "6":
-        domain = "jhames.shop"
-    elif domain_choice == "7":
-        domain = "lilearyth.shop"
-    elif domain_choice == "8":
-        domain = "miztyxmm.store"
-    elif domain_choice == "9":
-        domain = "jakulan.site"
-    elif domain_choice == "10":
-        domain = "pleasenospam.email"
-    elif domain_choice == "11":
-        domain = "lovesiobhan.shop"
-    elif domain_choice == "12":
-        domain = "rimuru.store"
+        domain = "ygmail.cfd"
     else:
-        domain = "weyn.store"
+        domain = "lcxmail.site" 
     return f"{prefix}@{domain}"
 def _fetch_yopmail_code(login):
     sess = requests.Session()
@@ -2296,33 +2280,23 @@ def main():
             CUSTOM_BIRTH_YEAR = None
         clear(); logo()
         print(Panel(
-            f"{O}  [1]{W}  jemm.site\n"
-            f"{O}  [2]{W}  yopmail.com\n"
-            f"{O}  [3]{W}  weyn.store\n"
-            f"{O}  [4]{W}  astheia.shop\n"
-            f"{O}  [5]{W}  jhames.shop\n"
-            f"{O}  [6]{W}  lilearyth.shop\n"
-            f"{O}  [7]{W}  miztyxmm.store\n"
-            f"{O}  [8]{W}  jakulan.site\n"
-            f"{O}  [9]{W}  pleasenospam.email\n"
-            f"{O}  [10]{W} lovesiobhan.shop\n"
-            f"{O}  [11]{W} rimuru.store\n"
+            f"{O}  [1]{W}  lcxmail.site\n"
+            f"{O}  [2]{W}  harakirimail.com\n"
+            f"{O}  [3]{W}  yopmail.com\n"
+            f"{O}  [4]{W}  ygmail.cfd\n"
             f"{GR}  [b]{W}  Back",
             title=f"{R}[ EMAIL DOMAIN ]{W}",
             border_style="bold red",
             padding=(0, 2)
         ))
-        domain_choice = Prompt.ask(f"{O}[►]{W} Select", choices=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "b"], default="3")
+        domain_choice = Prompt.ask(f"{O}[►]{W} Select", choices=["1", "2", "3", "4", "b"], default="2")
         if domain_choice == 'b': continue
 
         _req_pass = DOMAIN_PASSWORDS.get(domain_choice, "")
         if _req_pass and domain_choice not in DOMAIN_UNLOCKED:
             _domain_labels = {
-                "1": "jemm.site", "2": "yopmail.com", "3": "weyn.store",
-                "4": "astheia.shop", "5": "jhames.shop", "6": "lilearyth.shop",
-                "7": "miztyxmm.store", "8": "jakulan.site",
-                "9": "pleasenospam.email", "10": "lovesiobhan.shop",
-                "11": "rimuru.store"
+                "1": "lcxmail.site", "2": "harakirimail.com", "3": "yopmail.com",
+                "4": "ygmail.cfd",
             }
             clear(); logo()
             print(Panel(
