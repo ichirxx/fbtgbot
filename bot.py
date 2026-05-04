@@ -288,7 +288,7 @@ async def cmd_start(message: types.Message):
         pass
 
 # ================== /credits COMMAND ==================
-@dp.message(Command("credits"))
+@dp.message_handler(commands=['credits'])
 async def cmd_credits(message: types.Message):
     uid = message.from_user.id
     # Delete any lingering "⚡ Creating..." banner
