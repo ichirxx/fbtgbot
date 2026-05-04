@@ -774,7 +774,7 @@ async def cb_stop(callback: types.CallbackQuery):
             pass
 
 # ================== TEXT INPUT HANDLER ==================
-@dp.message()
+@dp.message_handler()
 async def handle_text(message: types.Message):
     uid      = message.from_user.id
     chat_id  = message.chat.id
