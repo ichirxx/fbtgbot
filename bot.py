@@ -15,7 +15,7 @@ BOT_TOKEN = "8693883896:AAGrZolWFHpwOSuJ0bIzWn9aaWCDrcjTAJE"
 OWNER_ID  = 8650814015
 
 bot = Bot(token=BOT_TOKEN)
-dp  = Dispatcher()
+dp  = Dispatcher(bot)
 
 user_data       = {}   # uid -> session dict
 seen_users      = set()
