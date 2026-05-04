@@ -4,7 +4,7 @@ import asyncio
 import logging
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters import Command
+from aiogram.dispatcher.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 load_dotenv()
