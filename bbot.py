@@ -11,7 +11,7 @@ load_dotenv()
 
 import main as fb
 
-BOT_TOKEN = "8693883896:AAGrZolWFHpwOSuJ0bIzWn9aaWCDrcjTAJE"
+BOT_TOKEN = "8232635576:AAG8OgTxNGeMyHGA0Q_7Qdsqg1zi1z0YLdk"
 OWNER_ID  = 8650814015
 
 bot = Bot(token=BOT_TOKEN)
