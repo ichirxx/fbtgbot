@@ -64,8 +64,8 @@ def save_users():
 
 DOMAINS = {
     "1":  "lcxmail.site",
-    "2":  "yopmail.com",
-    "3":  "harakirimail.com",
+    "2":  "harakirimail.com",
+    "3":  "yopmail.com",
     "4":  "ygmail.cfd",
 }
 
