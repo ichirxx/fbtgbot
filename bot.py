@@ -345,7 +345,7 @@ async def cb_approval(callback: types.CallbackQuery):
     await callback.answer()
 
 # ================== GIVE CREDITS (approval or add) ==================
-@dp.callback_query(lambda c: c.data.startswith("credits:give:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("credits:give:"))
 async def cb_give_credits(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
