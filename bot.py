@@ -400,7 +400,7 @@ async def cb_give_credits(callback: types.CallbackQuery):
     await callback.answer(f"✅ Gave {amount} credits!", show_alert=True)
 
 # ================== ADD CREDITS TO EXISTING USER ==================
-@dp.callback_query(lambda c: c.data.startswith("credits:add:"))
+@dp.callback_query_handler(lambda c: c.data.startswith("credits:add:"))
 async def cb_add_credits(callback: types.CallbackQuery):
     if callback.from_user.id != OWNER_ID:
         await callback.answer("Owner only.", show_alert=True)
